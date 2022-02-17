@@ -9,7 +9,7 @@ int main()
 	cin.getline(Text, 200);
 
 	int lenght = 0;
-	while (Text[lenght] != '\0')
+	while (Text[lenght] != '\0') // Replaced with a bitwise XOR and a for loop
 		lenght++;
 
 	cout <<"\n Bei ihrer eingabe handelt es sich um ";
