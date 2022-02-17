@@ -21,7 +21,7 @@ int main()
             cout << "k";
             i=l;}
     }
-    cout << "ein Paliodrom\n\n";
+    cout << "ein Palindrom.\n\n";
 	system("Pause");
 	return 0;
 }
