@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int l,c,i =1,d;
-int main()
+int main(void)
 {
 	char T[201];
 	cout << "Bitte geben sie ihren Text ein:\n";
@@ -24,5 +24,4 @@ int main()
     }
     cout << "ein Palindrom.\n\n";
 	system("Pause");
-	return 0;
 }
