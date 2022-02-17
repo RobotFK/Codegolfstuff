@@ -1,23 +1,25 @@
 #include <iostream>
 using namespace std;
 
-int l,i = 1,c;
+int l,i = 1,c,d;
 int main()
 {
 	char T[201];
 	cout << "Bitte geben sie ihren Text ein:\n";
 	cin.getline(T, 200);
 
-	for(;T[l] ^ '\0';)
+	for(;T[l] ^ 0;)
 		l++;
 
-	cout <<"\nBei ihrer Eingabe handelt es sich um ";
+	cout <<"\n Bei ihrer Eingabe handelt es sich um ";
 
     for (;i <= l-i;i++){
+        d = T[l - i];
         c = T[i-1];
-        if(!(c == T[l - i] ||
-           c+32 == T[l - i] && c > 64 * c < 91 ||
-           c-32 == T[l - i] && c > 96 * c < 121
+
+        if(!(c == d ||
+           c+32 == d && c > 64 * c < 91 ||
+           c-32 == d && c > 96 * c < 121
            )){
             cout << "k";
             i=l;}
