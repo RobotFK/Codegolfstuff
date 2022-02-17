@@ -1,0 +1,28 @@
+#include <iostream>
+//#include <string>
+using namespace std;
+
+int main()
+{
+	char Text[201];
+	cout << "Bitte geben sie ihren Text ein: \n";
+	cin.getline(Text, 200);
+
+	int lenght = 0;
+	while (Text[lenght] != '\0')
+		lenght++;
+
+	cout <<"\n Bei ihrer eingabe handelt es sich um ";
+
+    for (int i = 0;i <= lenght-i-1;i++){
+        if(Text[i] == Text[lenght - i-1] ||
+           (Text[i]+32 == Text[lenght - i-1] && Text[i] >= 65 && Text[i] <= 90) ||
+           (Text[i]-32 == Text[lenght - i-1] && Text[i]>= 97 && Text[i] <= 122)
+           ){}else{
+            cout << "k";
+            break;}
+    }
+    cout << "ein Paliodrom \n\n";
+	system("Pause");
+	return 0;
+}
