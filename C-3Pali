@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-int l,c,d;
-int main(i)
+int l,c,i =1,d;
+int main()
 {
 	char T[201];
 	cout << "Bitte geben sie ihren Text ein:\n";
