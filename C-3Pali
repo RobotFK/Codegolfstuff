@@ -1,19 +1,19 @@
 #include <iostream>
 using namespace std;
 
-int l;
+int l,i;
 int main()
 {
 	char T[201];
-	cout << "Bitte geben sie ihren Text ein: \n";
+	cout << "Bitte geben sie ihren Text ein:\n";
 	cin.getline(T, 200);
 
-	while (T[l] != '\0')
+	for(;T[l] != '\0';)
 		l++;
 
-	cout <<"\n Bei ihrer Eingabe handelt es sich um ";
+	cout <<"\nBei ihrer Eingabe handelt es sich um ";
 
-    for (int i = 0 ;i <= l-i-1;i++){
+    for (;i <= l-i-1;i++){
         if(T[i] == T[l - i-1] ||
            T[i]+32 == T[l - i-1] && T[i] >= 65 && T[i] <= 90 ||
            T[i]-32 == T[l - i-1] && T[i]>= 97 && T[i] <= 122
@@ -21,7 +21,7 @@ int main()
             cout << "k";
             i=l;}
     }
-    cout << "ein Paliodrom \n\n";
+    cout << "ein Paliodrom\n\n";
 	system("Pause");
 	return 0;
 }
