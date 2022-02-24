@@ -213,26 +213,32 @@ void D_3_2(string Input){
 }
 
 void D_4_1(string Input){
-    //Input is in int string and bits
-    //Internal cal is in bits
-    //Output in Hex
-    int Answer = 0;
-    bool MD5in [512] = {false};
-    for(int i=0;i!= 7;i++){
-        bitset<8> Inputbit(Input[i]);
-        for(int j=0;j!= 7;j++){
-            MD5in[i*8+j] = Inputbit.test(j);
-            }
-    cout << Inputbit << "\n";
-    }
-    /* Testdisplay
-    for(int i=0;i!=512;i++){
-    cout << MD5in[i];}
-    */
+	//Input is in int string and bits
+	//It is Input + A single 1 + Padding to reach 448 (64short of 512)+ the lenght of the original message in bits (every letter is 8 bits)
+	//Internal cal is in bits
+	//Output in Hex
+	int Answer = 0;
+	bool MD5in[512] = { false };
+	for (int i = 0; i != 7; i++){
+		bitset<8> Inputbit(Input[i]);
+		for (int j = 0; j != 7; j++){
+			MD5in[i * 8 + j] = Inputbit.test(j);
+		}
+		//cout << Inputbit << "\n";
+	}
+	 //Testdisplay
+	for(int i=0;i!=512;i++){
+	cout << MD5in[i];}
+	
 
-    for(int i=0;i!= -1;i++){ //I is our attempted Number in dec, also No limit in Prod
-    break;
-    }
+	for (int i = 0; i != -1; i++){ //I is our attempted Number in dec, also No limit in Prod
+		for (int k = log10(i) + 1; k >= 1; k--){// Append Our number, ofcoures in reverse
+			int Front = i / pow(10, k - 1);
+			int digit = Front % 10;
+			bitset<8> Numberbit(digit);
+			
+		break;
+	}
 }
 
 int main() {
