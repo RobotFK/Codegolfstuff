@@ -213,32 +213,57 @@ void D_3_2(string Input){
 }
 
 void D_4_1(string Input){
-	//Input is in int string and bits
-	//It is Input + A single 1 + Padding to reach 448 (64short of 512)+ the lenght of the original message in bits (every letter is 8 bits)
-	//Internal cal is in bits
-	//Output in Hex
-	int Answer = 0;
-	bool MD5in[512] = { false };
-	for (int i = 0; i != 7; i++){
-		bitset<8> Inputbit(Input[i]);
-		for (int j = 0; j != 7; j++){
-			MD5in[i * 8 + j] = Inputbit.test(j);
-		}
-		//cout << Inputbit << "\n";
-	}
-	 //Testdisplay
-	for(int i=0;i!=512;i++){
-	cout << MD5in[i];}
-	
+    //Input is in int string and bits
+    //Internal cal is in bits
+    //Output in Hex
+    int Answer = 0;
+    bool MD5in [512] = {false};
+    for(int i=0;i!= 8;i++){
+        bitset<8> Inputbit(Input[i]);
+        for(int j=0;j!= 8;j++){
+            MD5in[i*8+j] = Inputbit.test(7-j); // bit test actually starts at the rightmost bit <- This is why we need the 7-j here
+            }
+    cout << Inputbit << "\n";
+    }
 
-	for (int i = 0; i != -1; i++){ //I is our attempted Number in dec, also No limit in Prod
-		for (int k = log10(i) + 1; k >= 1; k--){// Append Our number, ofcoures in reverse
+    cout << "Counter:\n";
+
+
+	for (int i = 129; i != -1; i++){ //I is our attempted Number in dec, also No limit in Prod
+	int offset = 0; //There is a clearner way to cal this, but just incrementing this saves me some work, plus we can use this to get the original message length
+		for (int k = log10(i) + 1; k >= 1; k--){// Append Our number, ofcoures in reverse. This loop goes through the digits of the number
 			int Front = i / pow(10, k - 1);
-			int digit = Front % 10;
-			bitset<8> Numberbit(digit);
-			
+			string digit = to_string(Front % 10);
+			//cout << digit << "\n";
+			bitset<8> Numberbit(digit[0]); //Asking for position 0 here seems to fix a faulty pointer
+			for(int j=0;j!= 8;j++){
+                MD5in[64+(offset*8)+j] = Numberbit.test(7-j);
+                //cout <<"Writing "<< Numberbit.test(7-j) << " at " << 65+(offset*8)+j <<endl;
+                //cout <<"Calc: 64(+1)+(8*"<< offset << " )+" << j << endl;
+            }
+            offset++; //The next digit is 8 bits further !
+            //cout << Numberbit << "\n";
+            }
+            MD5in[64+1+(offset*8)+7+1] = true; //Adding the Bitindicating the beginning of Padding
+            int MsgLenght = 64+(offset*8);
+            bitset<64> MsgLenghtbit(MsgLenght);
+            //cout << 64+(offset*8) <<"Results in:"<< MsgLenghtbit << endl;
+            for(i= 0;i!=64;i++){
+            MD5in[512-64+i] = MsgLenghtbit.test(63-i);
+            }
+
+        //Now MD5in is ready and we can start working on Hashing and then Testing
 		break;
 	}
+
+    /* Testdisplay
+    for(int i=0;i!=512;i++){
+    cout << MD5in[i];
+    if((i+1)%8==0)
+    cout <<" - Line " << (i/8)+1 <<endl;
+    }*/
+
+
 }
 
 int main() {
